@@ -1,0 +1,90 @@
+---
+const pages = await Promise.all(
+	(await Astro.glob("pages/*.md"))
+		.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+		.map(async ({ getHeadings, url }) => {
+			return {
+				headings: getHeadings(),
+				url,
+				active: Astro.url.pathname.split(".")[0] === (url || "/"),
+			};
+		}),
+);
+---
+
+<aside>
+	<nav>
+		<h2><a href="/">dreamland</a></h2>
+		{
+			pages.map(({ url, headings: [title, ...headings], active }) => (
+				<>
+					<a href={url || "/"} class:list={[{ active }]}>
+						{title.text}
+					</a>
+					{active &&
+						headings
+							.filter((heading) => heading.depth == 2)
+							.map((heading) => (
+								<a href={url + "#" + heading.slug} class="sub">
+									{heading.text}
+								</a>
+							))}
+				</>
+			))
+		}
+	</nav>
+</aside>
+
+<style>
+	aside {
+		width: 14rem;
+		flex-shrink: 0;
+	}
+	nav {
+		display: flex;
+		flex-direction: column;
+		width: inherit;
+		border-right: thin solid var(--bd);
+		padding-left: 1rem;
+		margin: 12px 0;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		& a {
+			color: currentColor;
+			text-decoration: none;
+			position: relative;
+			/* goofy ass selector */
+			nav > & {
+				padding: 0.25rem 0;
+				padding-left: 0.75rem;
+				color: #bbb;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			&.sub {
+				margin-left: 0.75rem;
+				border-left: thin solid var(--bd);
+			}
+			&.active {
+				color: white;
+				font-weight: 500;
+				&::after {
+					content: "";
+					position: absolute;
+					width: 0.7rem;
+					height: 0.7rem;
+					background-color: var(--bg);
+					border: thin solid var(--bd);
+					border-top: thin solid transparent;
+					border-right: thin solid transparent;
+					top: 50%;
+					right: -1px;
+					transform: translate(50%, -50%) rotate(45deg);
+					view-transition-name: pointer;
+				}
+			}
+		}
+	}
+</style>

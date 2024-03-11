@@ -1,0 +1,42 @@
+---
+import "styles/style.css";
+import Sidebar from "components/Sidebar.astro";
+const { headings } = Astro.props;
+import { ViewTransitions } from "astro:transitions";
+---
+
+<html lang="en" transition:animate="none">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{headings ? headings[0].text + " | dreamland docs" : "404 | dreamland docs"}</title>
+		<ViewTransitions />
+	</head>
+	<body>
+		<Sidebar />
+		<main>
+			<slot />
+		</main>
+		<style>
+			:root {
+				min-height: 100%;
+				width: 100vw;
+				overflow-x: hidden;
+			}
+			body {
+				display: flex;
+				height: 100%;
+				margin: 0;
+				width: 100%;
+				max-width: 90rem;
+				margin: 0 auto;
+			}
+			main {
+				padding: 2.5rem;
+				overflow-x: hidden;
+				width: 100%;
+			}
+		</style>
+	</body>
+</html>
