@@ -4,6 +4,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://dreamland.js.org",
 	integrations: [],
 	trailingSlash: "never",
 	markdown: {

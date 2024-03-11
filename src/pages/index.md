@@ -19,4 +19,4 @@ Chances are, you might not. How we should render and update HTML on a website is
 
 dreamland.js is an absurdly minimal, opt-in approach for creating **working** declarative UI that reacts to state without the hassle.
 
-If you're still here and want to learn, [get started](https://github.com/MercuryWorkshop/dreamlandjs/wiki/1.-Basic-HTML)!
+If you're still here and want to learn, [get started](/basic-html)!
