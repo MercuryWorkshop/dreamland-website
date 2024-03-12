@@ -12,7 +12,8 @@
   "dependencies": {
     "@astrojs/check": "0.5.7",
     "astro": "4.5.0",
-    "postcss-preset-env": "^9.5.0",
+    "browserslist": "^4.23.0",
+    "lightningcss": "^1.24.0",
     "rehype-autolink-headings": "^7.1.0",
     "typescript": "^5.4.2"
   }

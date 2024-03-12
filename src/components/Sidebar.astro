@@ -50,19 +50,10 @@ const pages = await Promise.all(
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		& a {
+		a {
 			color: currentColor;
 			text-decoration: none;
 			position: relative;
-			/* goofy ass selector */
-			nav > & {
-				padding: 0.25rem 0;
-				padding-left: 0.75rem;
-				color: #bbb;
-				&:hover {
-					text-decoration: underline;
-				}
-			}
 			&.sub {
 				margin-left: 0.75rem;
 				border-left: thin solid var(--bd);
@@ -84,6 +75,14 @@ const pages = await Promise.all(
 					transform: translate(50%, -50%) rotate(45deg);
 					view-transition-name: pointer;
 				}
+			}
+		}
+		> a {
+			padding: 0.25rem 0;
+			padding-left: 0.75rem;
+			color: #bbb;
+			&:hover {
+				text-decoration: underline;
 			}
 		}
 	}
