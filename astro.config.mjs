@@ -24,6 +24,9 @@ export default defineConfig({
 	build: {
 		format: "preserve"
 	},
+	server: {
+		host: true
+	},
 	vite: {
 		css: {
 			transformer: "lightningcss",
