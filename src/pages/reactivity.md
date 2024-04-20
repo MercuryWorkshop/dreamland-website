@@ -26,9 +26,9 @@ Whenever `counter` is updated, either from inside the component, from a parent c
 
 You can also manually create a stateful object, which is useful for nesting.
 ```js
-let state = stateful({
+let state = $state({
     a: 0,
-    b: stateful({
+    b: $state({
         c: 1
     })
 })
