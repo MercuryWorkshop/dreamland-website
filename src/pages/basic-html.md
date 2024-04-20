@@ -32,7 +32,7 @@ document.body.appendChild(button);
 ```
 
 We just created a button, with the class "some-button", and added it to the document. This is the simplest possible way of using dreamland, and is why it's so easy to slowly transition to using it from a plain-js codebase.
-
+> Note: If you are coming from react, you may be used to using `className` instead of `class`. In dreamland, we use `class` to match the standard HTML attribute.
 ### Extra (syntax) Sugar!
 
 What if we wanted to do something when the button is clicked? For any DOM event, you can use `on:` handlers.
