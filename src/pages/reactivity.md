@@ -58,3 +58,13 @@ As the function is only executed once ever. To have additional logic tied to sta
 ```
 This will have the expected behavior, flipping between even and odd when the button is pressed. Remember that the "count % 2 == 0" operation is recalculated every time `count` changes, but nothing else in the function is rerun.
 
+
+## Reactive strings
+### Note
+> This requires the `usestring` feature to be enabled in your build of dreamland. See the [Building Dreamland](/building-dreamland) page for more information.
+You use the `use` function to create a pointer to a template string, which updates when variables within it change.
+```jsx
+<div>
+    <input placeholder={use`Hello, ${this.name}!`} />
+</div>
+```
