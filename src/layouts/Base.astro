@@ -3,6 +3,8 @@ import "styles/style.css";
 import Sidebar from "components/Sidebar.astro";
 const { headings } = Astro.props;
 import { ViewTransitions } from "astro:transitions";
+
+const title =  headings ? headings[0].text + " | dreamland docs" : "404 | dreamland docs";
 ---
 
 <html lang="en" transition:animate="none">
@@ -10,7 +12,13 @@ import { ViewTransitions } from "astro:transitions";
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{headings ? headings[0].text + " | dreamland docs" : "404 | dreamland docs"}</title>
+
+
+		<meta property="og:url" content="https://dreamland.js.org" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content="Documentation for dreamland, a modern, fast, and lightweight JavaScript framework for building web applications that work." />
+		<title>{title}</title>
 		<ViewTransitions />
 	</head>
 	<body>
