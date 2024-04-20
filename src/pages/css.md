@@ -2,8 +2,9 @@
 layout: layouts/Base.astro
 order: 10
 ---
+# CSS
 
-# Inline styles
+## Inline styles
 
 Similarly to React, you can use js inline styles in dreamland. Here's an example:
 
@@ -28,7 +29,7 @@ let element = (
 );
 ```
 
-# Tagged CSS
+## Tagged CSS
 ### Note
 > This requires the `css` feature to be enabled in your build of dreamland. See the [Building Dreamland](/building-dreamland) page for more information.
 
@@ -77,7 +78,7 @@ Note that the css above the selectors gets applied to the root element. As of no
 
 
 
-# Class arrays
+## Class arrays
 You can use arrays of class names in dreamland to simplify toggling classes. Here's an example:
 ```jsx
 let state = $state({
@@ -85,7 +86,7 @@ let state = $state({
 });
 
 let element = (
-    <div class={["container", use(state.active, a && "active")]}>
+    <div class={["container", use(state.active, a => a && "active")]}>
         Hello, world!
     </div>
 );
