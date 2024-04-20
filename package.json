@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "0.5.7",
+    "@astrojs/markdown-remark": "^4.3.0",
     "astro": "4.5.0",
     "browserslist": "^4.23.0",
     "lightningcss": "^1.24.0",
