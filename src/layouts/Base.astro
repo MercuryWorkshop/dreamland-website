@@ -3,8 +3,9 @@ import "styles/style.css";
 import Sidebar from "components/Sidebar.astro";
 const { headings } = Astro.props;
 import { ViewTransitions } from "astro:transitions";
+import { Icon } from 'astro-icon/components'
 
-const title =  headings ? headings[0].text + " | dreamland docs" : "404 | dreamland docs";
+const title =  headings ? headings[0].text + " | dreamland.js" : "404 | dreamland.js";
 ---
 
 <html lang="en" transition:animate="none">
@@ -18,10 +19,20 @@ const title =  headings ? headings[0].text + " | dreamland docs" : "404 | dreaml
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content="Documentation for dreamland, a modern, fast, and lightweight JavaScript framework for building web applications that work." />
+		<meta property="og:image" content="https://dreamland.js.org/public/logo.png" />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
 	<body>
+		<div id="header">
+			<!-- <img src="/public/logo.png" alt="dreamland.js logo" /> -->
+			<a href="https://github.com/MercuryWorkshop/dreamlandjs">
+				<Icon size=30 name="mdi:github" />
+			</a>
+			<a href="https://discord.gg/PSFh37aZ5Q">
+				<Icon size=30 name="mdi:discord" />
+			</a>
+		</div>
 		<Sidebar />
 		<main>
 			<slot />
@@ -31,6 +42,25 @@ const title =  headings ? headings[0].text + " | dreamland docs" : "404 | dreaml
 				min-height: 100%;
 				width: 100vw;
 				overflow-x: hidden;
+			}
+			#header {
+				position:absolute;
+				top: 0;
+				right: 0;
+				height: 5rem;
+
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.5em;
+				padding: 1rem 2.5rem;
+				background-color: var(--color-primary);
+				color: var(--color-white);
+				overflow: hidden;
+			}
+			#header a {
+				color: var(--color-white);
+
 			}
 			body {
 				display: flex;

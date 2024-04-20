@@ -12,10 +12,15 @@
   "dependencies": {
     "@astrojs/check": "0.5.7",
     "@astrojs/markdown-remark": "^4.3.0",
+    "@iconify-icons/mdi": "^1.2.48",
     "astro": "4.5.0",
+    "astro-icon": "^1.1.0",
     "browserslist": "^4.23.0",
     "lightningcss": "^1.24.0",
     "rehype-autolink-headings": "^7.1.0",
     "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.66"
   }
 }
