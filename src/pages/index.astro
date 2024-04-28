@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import { Code } from "astro:components";
+import darkPlus from 'tm-themes/themes/dark-plus.json'
+console.log(darkPlus)
+---
+
+<Base>
+
+
+  <div id="hero">
+    <img src="/logo.png">
+    <h1>dreamland.js</h1>
+    <p>A utilitarian framework for creating simple UI in javascript </p>
+  </div>
+
+
+
+  <div id="middle">
+
+    <div class="split">
+
+
+    <div class="code">
+
+      <Code code={
+`function Counter(){
+    this.css = \`
+color: red;
+button {
+  border: 3px solid blue;
+}\`
+    this.counter = 0
+
+    return html\`
+        <div>
+            <div>count is: \${use(this.counter)}</div>
+            <button on:click=\${()=>this.counter++}>Click Me!</button>
+        </div>
+    \`
+}
+
+let root = html\`
+  <div>
+    <h1>dreamland.js!</h1>
+    <\${Counter} ${'/'}>
+  <div/>
+\`;
+document.body.appendChild(root);
+`} theme="min-dark" lang="js" />
+      </div>
+
+      <div style="max-width: 45ch ">
+
+        <h3>Write Components without the overhead</h3>
+        <p>
+          dreamland has <b>no virtual DOM</b>, <b>no JSX</b>, and <b>no build step</b>. Just write your components in javascript and attach them to the DOM.
+        </p>
+        <br>
+        <p>
+          dreamland is <b>extremely small</b>, coming in at <b>1.6kb</b> minified and gzipped.
+        </p>
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="doc-flow">
+      <h1 class="doc-flow">Start with a single import</h1>
+      <p>
+        dreamland is a single file that can be imported directly into your project. It is also available <a href="https://npmjs.org/package/dreamland">on npm</a>.
+      </p>
+      <div class="code">
+        <Code code={`<script src="https://unpkg.com/dreamland"></script>`} theme="min-dark" lang="html" />
+      </div>
+
+      <p>
+        Check out the <a href="/basic-html">documentation</a> for a quick start guide
+      </p>
+    </div>
+  </div>
+
+
+  <div id="footer">
+    <p>dreamland.js is a project by <a href="https://github.com/MercuryWorkshop">Mercury Workshop</a></p>
+    <div id="links">
+      <a href="https://github.com/MercuryWorkshop/dreamland.js">GitHub</a>
+      <a href="https://npmjs.org/package/dreamland">npm</a>
+      <a href="https://x.com/dreamlandjs">Twitter</a>
+    </div>
+  </div>
+
+
+
+
+
+  <style is:global>
+  body{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  </style>
+  <style>
+
+    h1 {
+      color: white;
+      text-align: center;
+      border: none;
+    }
+    #hero {
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    #hero img {
+      width: 8em;
+      margin: 0 auto;
+    }
+    #hero h1 {
+      margin: 0;
+    }
+
+    #middle {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+      left: 0;
+      text-align: center;
+    background-color:#141214;
+    padding: 3rem;
+    padding-top: 1rem;
+
+
+    .split {
+      display: flex;
+      gap: 3rem;
+      text-align: left;
+    }
+    @media (max-width: 800px) {
+      .split {
+        flex-direction: column-reverse;
+      }
+      }
+
+      .doc-flow {
+        text-align: left;
+      }
+
+    a {
+      color: var(--acc);
+        text-decoration: none;
+        font-weight: bold;
+
+      }
+    .code {
+      text-align: left;
+      max-width: 40em;
+      pre {
+	      padding: 1rem;
+		    border-radius: 0.5rem;
+		    font-size: 0.80rem;
+      }
+    
+      }
+    }
+    #footer {
+      display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+      gap: 1rem;
+      flex: 1;
+      color: white;
+      text-align: center;
+      padding: 0.5rem;
+    background-color: #211E21;
+
+    a {
+      color: white;
+      text-decoration: underline;
+      border-radius: 0.5em;
+    
+    }
+  }
+  #links {
+    display: flex;
+    gap: 1em;
+  }
+
+
+    
+  </style>
+
+</Base>
+

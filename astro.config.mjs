@@ -5,6 +5,7 @@ import { browserslistToTargets } from "lightningcss";
 import browserslist from "browserslist";
 
 import icon from "astro-icon";
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +18,13 @@ export default defineConfig({
       test: ({
         tagName
       }) => tagName !== "h1"
-    }]]
+    }]],
+    shikiConfig: {
+      theme: "min-dark",
+      wrap: false,
+      langs: []
+    },
+    integrations: [mdx()]
   },
   build: {
     format: "preserve"

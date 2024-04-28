@@ -1,5 +1,5 @@
 ---
-layout: layouts/Base.astro
+layout: layouts/Document.astro
 order: 1
 ---
 
