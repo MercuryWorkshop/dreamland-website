@@ -3,32 +3,29 @@ import Base from "./Base.astro";
 
 import "styles/style.css";
 import Sidebar from "components/Sidebar.astro";
-const { headings, frontmatter } = Astro.props;
+const { headings } = Astro.props;
 
-const title =  headings ? headings[0].text + " | dreamland.js" : "404 | dreamland.js";
+const title = headings ? headings[0].text + " | dreamland.js" : "404 | dreamland.js";
 ---
 
 <Base title={title}>
+	<Sidebar />
+	<main>
+		<slot />
+	</main>
 
-		<Sidebar />
-  <main>
-    <slot/>
-  </main>
-
-
-
-  <style>
-			body {
-				display: flex;
-				height: 100%;
-				margin: 0;
-				width: 100%;
-				max-width: 90rem;
-			}
-			main {
-				padding: 2.5rem;
-				overflow-x: hidden;
-				width: 100%;
-			}
-</style>
+	<style>
+		body {
+			display: flex;
+			height: 100%;
+			margin: 0;
+			width: 100%;
+			max-width: 90rem;
+		}
+		main {
+			padding: 2.5rem;
+			overflow-x: hidden;
+			width: 100%;
+		}
+	</style>
 </Base>

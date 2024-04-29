@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "0.5.7",
-    "@astrojs/markdown-remark": "^4.3.0",
+    "@astrojs/markdown-remark": "^5.1.0",
     "@astrojs/mdx": "^2.3.1",
     "@iconify-icons/mdi": "^1.2.48",
     "astro": "4.5.0",

@@ -1,7 +1,7 @@
 main {
 	color: #ddd;
 	tab-size: 4;
-	& h1,
+	h1,
 	h2,
 	h3,
 	h4,
@@ -16,16 +16,17 @@ main {
 			text-underline-offset: 0.1rem;
 		}
 	}
-	& h1 {
+	h1 {
 		border-bottom: 2px solid var(--bd);
-	}
-	& a {
 		color: var(--acc);
 	}
-	& * {
+	a {
+		color: var(--acc);
+	}
+	* {
 		line-height: calc(2ex + 4px);
 	}
-	& blockquote {
+	blockquote {
 		border-left: thick solid var(--bd2);
 		margin: 0;
 		padding-left: 1rem;
@@ -33,13 +34,13 @@ main {
 			margin-bottom: -0.5rem;
 		}
 	}
-	& pre {
+	pre {
 		padding: 0.5rem;
 		border-radius: 0.5rem;
 		font-size: 0.85rem;
 	}
+}
 
-	h1 {
-		color: var(--acc);
-	}
+.astro-code {
+	background-color: #201d20 !important;
 }
