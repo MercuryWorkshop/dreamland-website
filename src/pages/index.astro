@@ -50,7 +50,6 @@ document.body.appendChild(root);
 						dreamland has <b>no virtual DOM</b>, <b>no JSX</b>, and <b>no build step</b>. Just write your
 						components in javascript and attach them to the DOM.
 					</p>
-					<br />
 					<p>
 						dreamland is <b>extremely small</b>, coming in at <b>1.6kb</b> minified and gzipped.
 					</p>
@@ -130,9 +129,10 @@ document.body.appendChild(root);
 				gap: 3rem;
 				text-align: left;
 			}
-			@media (max-width: 800px) {
+			@media (max-width: 60rem) {
 				.split {
 					flex-direction: column-reverse;
+					gap: 0;
 				}
 			}
 
