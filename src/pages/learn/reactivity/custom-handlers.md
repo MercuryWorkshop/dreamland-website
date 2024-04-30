@@ -11,5 +11,5 @@ The `handle` function takes in a reference pointer returned by `use` and a closu
 handle(use(this.text), () => {
 	console.log("new value of this.text: ", this.text);
 });
-return <input bind:value={use(this.text)}/>
+return <input bind:value={use(this.text)} />;
 ```

@@ -7,7 +7,6 @@ order: 5
 
 Being able to dynamically display data with `{use()}` is great, but it's also common to hide and show elements depending on data. The `$if()` macro helps you do that easily.
 
-
 ```jsx
 <div>
    {$if(condition,
@@ -17,24 +16,22 @@ Being able to dynamically display data with `{use()}` is great, but it's also co
 </div>
 ```
 
-
 Here's an example, using a button to show/hide an input field.
+
 ```js
-function App(){
-    this.showInput = false;
+function App() {
+	this.showInput = false;
 
-    return (
-       <div>
-           <h1>Conditional Rendering!</h1>
+	return (
+		<div>
+			<h1>Conditional Rendering!</h1>
 
-           <button on:click={() => this.showInput = !this.showInput}>
-                {use(this.showInput, show=>show ? "Hide Input" : "Show Input")}
-           </button>
-           
-           {$if(use(this.showInput),
-               <input placeholder="type here...." />
-           )}
-       </div>
-    )
+			<button on:click={() => (this.showInput = !this.showInput)}>
+				{use(this.showInput, (show) => (show ? "Hide Input" : "Show Input"))}
+			</button>
+
+			{$if(use(this.showInput), <input placeholder="type here...." />)}
+		</div>
+	);
 }
 ```
