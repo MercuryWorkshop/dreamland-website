@@ -1,0 +1,93 @@
+---
+const { js, jsx, tsx } = Astro.props;
+import { parseHTML } from 'linkedom'
+
+import { Icon } from "astro-icon/components";
+const html = await Astro.slots.render("default");
+
+const {document} = parseHTML(html);
+const children = document.children;
+
+const nameid = ''+Math.random();
+---
+
+<div class="codetab">
+
+  <div>
+    {
+      [...children].map((child) =>{
+        let lang = child.attributes.getNamedItem("data-language")?.value!;
+
+        let uid = Math.random()
+        return (
+          <>
+            <input type="radio" name={"tabset"+nameid} id={lang+uid} checked={lang == "js"}>
+            <label for={lang+uid}>
+              <Icon size={30} name="mdi:react" />
+              {lang?.toUpperCase()}
+            </label>
+          </>
+        )
+      })
+    }
+
+    <div class="tabs">
+    {
+      [...children].map((child) => {
+        return <>
+          <div class="tab-panel">
+            <div class="code-wrapper" set:html={child.outerHTML} />
+          </div>
+        </>
+      })
+    }
+    </div>
+  </div>
+
+<style>
+  .codetab {
+  .tab-panel {
+    display: none;
+  }
+
+  input:first-child:checked ~ .tabs > .tab-panel:first-child,
+  input:nth-child(3):checked ~ .tabs > .tab-panel:nth-child(2),
+  input:nth-child(5):checked ~ .tabs > .tab-panel:nth-child(3) {
+    display: block;
+  }
+
+  input {
+    position: absolute;
+    left: -200vw;
+  }
+
+
+  label {
+    background-color: #201d20;
+    user-select: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0.25em;
+    font-family: monospace;
+  }
+
+  input:checked + label {
+    color: var(--acc);
+  }
+
+
+  label {
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+  }
+}
+</style>
+<style is:global>  
+  .code-wrapper > .astro-code {
+    margin:  0;
+    border-top-left-radius: 0;
+  }
+</style>
+</div>
