@@ -3,6 +3,8 @@ import { ViewTransitions } from "astro:transitions";
 import { Icon } from "astro-icon/components";
 
 const { title } = Astro.props;
+
+import "styles/style.css";
 ---
 
 <html lang="en" transition:animate="none">
@@ -22,6 +24,9 @@ const { title } = Astro.props;
 		<meta property="og:image" content="https://dreamland.js.org/logo.png" />
 		<title>{title}</title>
 		<ViewTransitions />
+		<script>
+			if (new URLSearchParams(document.location.search).has("uwu")) document.body.classList.add("uwu");
+		</script>
 	</head>
 	<body>
 		<div id="header">

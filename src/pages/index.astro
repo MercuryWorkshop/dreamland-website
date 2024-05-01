@@ -1,12 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
 import { Code } from "astro:components";
+import { Icon } from "astro-icon/components";
 ---
 
 <Base title="dreamland.js">
 	<div id="hero">
 		<img src="/logo.png" />
 		<h1>dreamland.js</h1>
+		<Icon name="uwu" width="24rem" height={undefined} alt="sus" />
 		<p>A utilitarian framework for creating simple UI in javascript</p>
 	</div>
 
@@ -14,7 +16,6 @@ import { Code } from "astro:components";
 		<div id="wrapper">
 			<div class="split">
 				<div class="code">
-					
 					<Code
 						code={`function Counter(){
 	this.css = \`
@@ -92,22 +93,22 @@ document.body.appendChild(root);
 		}
 	</style>
 	<style>
-		h1 {
-			color: white;
-			text-align: center;
-			border: none;
-		}
 		#hero {
 			color: white;
 			padding: 1rem;
-			text-align: center;
-		}
-		#hero img {
-			width: 8em;
-			margin: 0 auto;
-		}
-		#hero h1 {
-			margin: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			img {
+				width: 8em;
+			}
+			h1 {
+				margin: 0;
+			}
+			svg {
+				margin-top: 2rem;
+				display: none;
+			}
 		}
 
 		#middle {
