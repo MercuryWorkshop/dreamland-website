@@ -2,13 +2,14 @@
 import Base from "../layouts/Base.astro";
 import { Code } from "astro:components";
 import { Icon } from "astro-icon/components";
+const UntypedIcon = Icon as any;
 ---
 
 <Base title="dreamland.js">
 	<div id="hero">
-		<img src="/logo.png" />
+		<img src="/logo.png" width="144" height="144" />
 		<h1>dreamland.js</h1>
-		<Icon name="uwu" width="24rem" height={undefined} alt="sus" />
+		<UntypedIcon name="uwu" width="24rem" height={undefined} alt="dreamland.js" />
 		<p>A utilitarian framework for creating simple UI in javascript</p>
 	</div>
 
