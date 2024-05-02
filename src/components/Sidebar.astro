@@ -1,22 +1,20 @@
 ---
-
-
 const sectionlist = {
-	"introduction": {
-		name: "Introduction"
+	introduction: {
+		name: "Introduction",
 	},
-	"reactivity": {
-		name: "Reactivity"
+	reactivity: {
+		name: "Reactivity",
 	},
-	"components": {
-		name: "Components"
+	components: {
+		name: "Components",
 	},
-	"css": {
-			name: "CSS"
+	css: {
+		name: "CSS",
 	},
-}
+};
 
-const sections = {}
+const sections = {};
 
 let globs = await Astro.glob("pages/**/*.(md|mdx)");
 
@@ -29,16 +27,20 @@ for (let glob of globs) {
 }
 
 for (let section in sections) {
-	let glob = sections[section]
-	sections[section] = glob.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-	.map(({ getHeadings, url }) => {
-				return {
-					headings: getHeadings(),
-					url,
-					active: Astro.url.pathname === url
-				};
-			})
-	}
+	let glob = sections[section];
+	sections[section] = glob
+		.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+		.map(({ getHeadings, url }) => {
+			return {
+				headings: getHeadings(),
+				url,
+				active: Astro.url.pathname === url,
+			};
+		});
+}
+
+import { Icon } from "astro-icon/components";
+const UntypedIcon = Icon as any;
 ---
 
 <input type="checkbox" id="sidebar" />
@@ -57,37 +59,33 @@ for (let section in sections) {
 					fill="currentColor"></path>
 			</svg>
 		</label>
-		<home>
-			<img src="/logo.svg" alt="dreamland" />
-			<h2><a href="/">dreamland</a></h2>
-		</home>
+		<a href="/">
+			<img src="/logo.svg" alt="dreamland" class="uwuhide" />
+			<h2 class="uwuhide">dreamland</h2>
+			<UntypedIcon class="uwushow" name="uwu" width="100%" height={undefined} alt="dreamland.js" />
+		</a>
 		<a href="/learn" class:list={[Astro.url.pathname == "/learn" && "active"]}>Getting Started</a>
 		{
-		Object.entries(sectionlist)
-			.map(([section, { name }]) => (
-
-	<>
-		<h3>{name}</h3>
-		{
-			sections[section].map(({ url, headings: [title, ...headings], active }) => (
+			Object.entries(sectionlist).map(([section, { name }]) => (
 				<>
-					<a href={url || "/"} class:list={[{ active }]}>
-						{title.text}
-					</a>
-					{active &&
-						headings
-							.filter((heading) => heading.depth == 2)
-							.map((heading) => (
-								<a href={url + "#" + heading.slug} class="sub">
-									{heading.text}
-								</a>
-							))}
+					<h3>{name}</h3>
+					{sections[section].map(({ url, headings: [title, ...headings], active }) => (
+						<>
+							<a href={url || "/"} class:list={[{ active }]}>
+								{title.text}
+							</a>
+							{active &&
+								headings
+									.filter((heading) => heading.depth == 2)
+									.map((heading) => (
+										<a href={url + "#" + heading.slug} class="sub">
+											{heading.text}
+										</a>
+									))}
+						</>
+					))}
 				</>
-))
-		}
-	</>
-))
-
+			))
 		}
 	</nav>
 </aside>
@@ -137,7 +135,7 @@ for (let section in sections) {
 	}
 	aside {
 		z-index: 1;
-		width: 15rem;
+		width: 16rem;
 		height: 100vh;
 		flex-shrink: 0;
 		@media (max-width: 64rem) {
@@ -148,13 +146,14 @@ for (let section in sections) {
 		display: flex;
 		flex-direction: column;
 		width: inherit;
-		border-right: thin solid var(--bd);
 		padding-left: 1rem;
 		margin: 12px 0;
 		position: fixed;
 		background-color: var(--bg);
 		top: 0;
 		bottom: 0;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		@media (max-width: 64rem) {
 			margin: 0;
 			right: 100%;
@@ -163,11 +162,19 @@ for (let section in sections) {
 				transform: translateX(100%);
 			}
 		}
+		&::after {
+			content: "";
+			position: absolute;
+			width: 1px;
+			height: 100%;
+			background-color: var(--bd);
+			right: 0;
+			z-index: -1;
+		}
 		a {
 			color: currentColor;
 			text-decoration: none;
 			position: relative;
-			overflow: hidden;
 			margin-right: -1px;
 			&.sub {
 				margin-left: 0.75rem;
@@ -186,7 +193,7 @@ for (let section in sections) {
 					border-top: thin solid transparent;
 					border-right: thin solid transparent;
 					top: 50%;
-					right: -1px;
+					right: 1px;
 					transform: translate(50%, -50%) rotate(45deg);
 					view-transition-name: pointer;
 					@media (max-width: 64rem) {
@@ -196,6 +203,9 @@ for (let section in sections) {
 				}
 			}
 		}
+		h3 {
+			margin: 0.5rem 0;
+		}
 		> a {
 			padding: 0.25rem 0;
 			padding-left: 0.75rem;
@@ -203,23 +213,26 @@ for (let section in sections) {
 			&:hover {
 				text-decoration: underline;
 			}
-		}
-		> home {
 			display: flex;
 			align-items: center;
 			gap: 1rem;
-			> img {
+			h2 {
+				color: white;
+			}
+			&:first-of-type {
+				padding: 0;
+				text-decoration: none;
+			}
+			img {
 				width: 2.5rem;
 				height: 2.5rem;
 				margin: 0.5rem 0;
 			}
-		}
-
-		> home + a {
-			padding: 0;
-		}
-		> h3 {
-			/* border-left: thin solid var(--bd); */
+			svg {
+				margin-top: 1rem;
+				margin-right: 1rem;
+				margin-bottom: 1rem;
+			}
 		}
 	}
 </style>

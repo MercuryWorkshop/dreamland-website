@@ -25,7 +25,23 @@ import "styles/style.css";
 		<title>{title}</title>
 		<ViewTransitions />
 		<script>
-			if (new URLSearchParams(document.location.search).has("uwu")) document.body.classList.add("uwu");
+			function uwu() {
+				if (
+					new URLSearchParams(document.location.search).has("uwu") &&
+					!document.body.classList.contains("uwu")
+				) {
+					document.body.classList.add("uwu");
+					Array.from(document.getElementsByTagName("a")).forEach((a) => {
+						const url = new URL(a.href, new URL(document.location.toString()));
+						if (url.origin == document.location.origin) {
+							url.searchParams.set("uwu", "");
+							a.href = url.href;
+						}
+					});
+				}
+			}
+			document.addEventListener("astro:page-load", uwu);
+			uwu();
 		</script>
 	</head>
 	<body>

@@ -44,14 +44,15 @@ main {
 	background-color: #201d20 !important;
 }
 
+.uwushow {
+	display: none;
+}
+
 .uwu {
-	#hero {
-		img,
-		h1 {
-			display: none;
-		}
-		svg {
-			display: block !important;
-		}
+	.uwuhide {
+		display: none;
+	}
+	.uwushow {
+		display: block !important;
 	}
 }
