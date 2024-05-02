@@ -1,4 +1,6 @@
 ---
+const notStupidPathname = Astro.url.pathname.split(".html")[0];
+
 const sectionlist = {
 	introduction: {
 		name: "Introduction",
@@ -34,7 +36,7 @@ for (let section in sections) {
 			return {
 				headings: getHeadings(),
 				url,
-				active: Astro.url.pathname === url,
+				active: notStupidPathname === url,
 			};
 		});
 }
@@ -64,7 +66,7 @@ const UntypedIcon = Icon as any;
 			<h2 class="uwuhide">dreamland</h2>
 			<UntypedIcon class="uwushow" name="uwu" width="100%" height={undefined} alt="dreamland.js" />
 		</a>
-		<a href="/learn" class:list={[Astro.url.pathname == "/learn" && "active"]}>Getting Started</a>
+		<a href="/learn" class:list={[notStupidPathname == "/learn" && "active"]}>Getting Started</a>
 		{
 			Object.entries(sectionlist).map(([section, { name }]) => (
 				<>
