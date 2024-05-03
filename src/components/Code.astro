@@ -23,7 +23,16 @@ const nameid = ''+Math.random();
           <>
             <input type="radio" name={"tabset"+nameid} id={lang+uid} checked={lang == "js"}>
             <label for={lang+uid}>
+              {
+              lang === "js" &&
+              <Icon size={30} name="mdi:language-javascript" />
+              || lang === "jsx" &&
+
               <Icon size={30} name="mdi:react" />
+              || 
+
+              <Icon size={30} name="mdi:language-typescript" />
+              }
               {lang?.toUpperCase()}
             </label>
           </>

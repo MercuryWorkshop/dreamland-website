@@ -1,6 +1,6 @@
 ---
 layout: layouts/Document.astro
-order: 333
+order: 3
 ---
 
 ## Class arrays

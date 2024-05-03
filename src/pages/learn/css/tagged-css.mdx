@@ -1,0 +1,115 @@
+---
+layout: layouts/Document.astro
+order: 2
+---
+
+import Code from "../../../components/Code.astro"
+
+# CSS-in-JS
+
+### Note
+
+> This requires the `css` feature to be enabled in your build of dreamland. See the [Building Dreamland](/learn/introduction/building-dreamland) page for more information.
+
+With the css feature, dreamland comes built in with an optional CSS-in-js solution, making a lot of things easier. This is provided through the `css` function, which returns a class name. Here's an example:
+
+## CSS tag function
+
+In this example, the CSS attributes "color: green" and "background-color: yellow" will get applied to the root `<div>` that has the `class=${styles}`. The `.button` selector will apply to any child of the element with the ".button" class, but will not affect elements in the rest of the page that also have that class
+<Code>
+```js
+let styles = css`
+	color: green;
+	background-color: yellow;
+
+	.button {
+		color: red;
+		background-color: blue;
+	}
+`;
+
+let element = html`
+	<div class=${styles}>
+		Hello, world!
+		<button class="button">Click me!</button>
+	</div>
+`;
+```
+```jsx
+let styles = css`
+	color: green;
+	background-color: yellow;
+
+	.button {
+		color: red;
+		background-color: blue;
+	}
+`;
+
+let element = (
+	<div class={styles}>
+		Hello, world!
+		<button class="button">Click me!</button>
+	</div>
+);
+```
+</Code>
+
+## Component-scoped-CSS
+The CSS here will act mostly similar to the above example, but **unlike** the previous example, when CSS is applied to a component it will only have effect within the boundary of the component. If another component that contains a button is added as a child of this component, the button selector will not leak out of our `App` component
+<Code>
+```js
+function App(){
+	this.css = `
+		color: green;
+		background-color: yellow;
+
+		button {
+			color: red;
+			background-color: blue;
+		}
+	`;
+
+	return html`
+		<div>
+			Hello, world!
+			<button>Click me!</button>
+		</div>
+	`;
+};
+```
+```jsx
+function App(){
+	this.css = css`
+		color: green;
+		background-color: yellow;
+
+		button {
+			color: red;
+			background-color: blue;
+		}
+	`;
+
+	return (
+		<div>
+			Hello, world!
+			<button>Click me!</button>
+		</div>
+	);
+};
+```
+</Code>
+
+
+
+
+Small notice, for now avoid writing CSS that doesn't use proper newlines:
+```js
+let styles = css`
+	background-color: green;
+
+	a { color: green }
+	button { margin: 0; }
+`
+```
+CSS formatted in this way may cause issues with the current system

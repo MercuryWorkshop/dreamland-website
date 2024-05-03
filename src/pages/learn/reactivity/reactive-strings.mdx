@@ -1,0 +1,21 @@
+---
+layout: layouts/Document.astro
+order: 3
+---
+
+# Reactive strings
+
+### Note
+
+> This requires the `usestring` feature to be enabled in your build of dreamland. See the [Building Dreamland](/learn/introduction/building-dreamland) page for more information.
+
+
+You use the `use` function to create a pointer to a template string, which updates when variables within it change.
+
+```jsx
+<div>
+	<input placeholder={use`Hello, ${this.name}!`} />
+</div>
+```
+
+This is useful for properties on elements that need to be recalculated

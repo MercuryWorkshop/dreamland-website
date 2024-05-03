@@ -1,0 +1,49 @@
+---
+layout: layouts/Document.astro
+order: 1
+---
+import Code from "../../../components/Code.astro"
+
+## Inline styles
+
+Similarly to React, you can use js inline styles in dreamland. Here's an example:
+
+<Code>
+```js
+let element = html`<div style=${{ color: "red", backgroundColor: "blue" }}>Hello, world!</div>`;
+```
+```jsx
+let element = <div style={{ color: "red", backgroundColor: "blue" }}>Hello, world!</div>;
+```
+</Code>
+
+You can also use the `use` function to bind a variable to a style property:
+
+
+<Code>
+```js
+let state = $state({
+	color: "red",
+});
+
+let element = html`<div style=${{ color: use(state.color) }}>Hello, world!</div>`;
+```
+```jsx
+let state = $state({
+	color: "red",
+});
+
+let element = <div style={{ color: use(state.color) }}>Hello, world!</div>;
+```
+```tsx
+let state: {
+	color: string
+} = $state({
+	color: "red",
+});
+
+let element: HTMLElement = <div style={{ color: use(state.color) }}>Hello, world!</div>;
+```
+</Code>
+
+This is the ideal solution for when styles change often, but is not optimal for more static css

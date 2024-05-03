@@ -3,7 +3,10 @@ layout: layouts/Document.astro
 order: 3
 ---
 
+import Code from "../../../components/Code.astro"
+
 # Intro to Reactivity
+
 
 The reactivity system is extremely simple, but it can take some time to get to know it.
 
@@ -11,7 +14,19 @@ At a basic level, if you call `use` and pass in a property that belongs in a sta
 
 The value of `this` inside a functional component is always stateful, letting this example from earlier work
 
+<Code>
 ```js
+function App() {
+	this.counter = 0;
+	return html`
+		<div>
+			<button on:click=${() => this.counter++}>Click me!</button>
+			<p>${use(this.counter)}</p>
+		</div>
+	`;
+}
+```
+```jsx
 function App() {
 	this.counter = 0;
 	return (
@@ -22,8 +37,22 @@ function App() {
 	);
 }
 ```
+```tsx
+const App: Component<{},{
+	counter: number
+}> = function () {
+	this.counter = 0;
+	return (
+		<div>
+			<button on:click={() => this.counter++}>Click me!</button>
+			<p>{use(this.counter)}</p>
+		</div>
+	);
+}
+```
+</Code>
 
-Whenever `counter` is updated, either from inside the component, from a parent component, or from devtools, the specific elements that depend on the value precisely update to reflect the new value with minimal overhead.
+In this example, whenever `counter` is updated, either from inside the component, from a parent component, or from devtools, the specific elements that depend on the value precisely update to reflect the new value with minimal overhead.
 
 You can also manually create a stateful object, which is useful for nesting.
 
@@ -48,7 +77,7 @@ state.b.c++;
 // div will now show "a is 1, c is 2"
 ```
 
-## Mapping
+## Computed values
 
 It's important to remember that `use` yields a reference pointer, not the actual value. As such, something like this will not work
 
@@ -69,16 +98,3 @@ As the function is only executed once ever. To have additional logic tied to sta
 ```
 
 This will have the expected behavior, flipping between even and odd when the button is pressed. Remember that the "count % 2 == 0" operation is recalculated every time `count` changes, but nothing else in the function is rerun.
-
-## Reactive strings
-
-### Note
-
-> This requires the `usestring` feature to be enabled in your build of dreamland. See the [Building Dreamland](/building-dreamland) page for more information.
-> You use the `use` function to create a pointer to a template string, which updates when variables within it change.
-
-```jsx
-<div>
-	<input placeholder={use`Hello, ${this.name}!`} />
-</div>
-```
