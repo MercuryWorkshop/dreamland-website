@@ -26,11 +26,9 @@ import "styles/style.css";
 		<ViewTransitions />
 		<script>
 			function uwu() {
+				const search = new URLSearchParams(document.location.search);
 				if (
-					new URLSearchParams(document.location.search).has("uwu") &&
-					!document.body.classList.contains("uwu")
-					||
-					new URLSearchParams(document.location.search).has("kawaii") &&
+					(search.has("uwu") || search.has("kawaii")) &&
 					!document.body.classList.contains("uwu")
 				) {
 					document.body.classList.add("uwu");
