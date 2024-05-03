@@ -29,6 +29,9 @@ import "styles/style.css";
 				if (
 					new URLSearchParams(document.location.search).has("uwu") &&
 					!document.body.classList.contains("uwu")
+					||
+					new URLSearchParams(document.location.search).has("kawaii") &&
+					!document.body.classList.contains("uwu")
 				) {
 					document.body.classList.add("uwu");
 					Array.from(document.getElementsByTagName("a")).forEach((a) => {
