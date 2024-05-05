@@ -46,4 +46,32 @@ let element: HTMLElement = <div style={{ color: use(state.color) }}>Hello, world
 ```
 </Code>
 
-This is the ideal solution for when styles change often, but is not optimal for more static css
+This is the ideal solution for when styles change often, but is not optimal for more static css.
+
+If you want css values with more complex outputs you have to tie in a callback to compute the value when the state changes.
+
+<Code>
+```js
+let state = $state({
+	line: 0,
+});
+
+let element = html`<div style=${{ line: use(state.line, (line) => `${line}em` }}>Hello, world!</div>`;
+```
+```jsx
+let state = $state({
+	line: 10,
+});
+
+let element = <div style={{ top: use(state.line, (line) => `${line}em`) }}>Hello, world!</div>;
+```
+```tsx
+let state: {
+	line: number 
+} = $state({
+	line: 10,
+});
+
+let element: HTMLElement = <div style={{ top: use(state.line, (line) => `${line}em` }}>Hello, world!</div>;
+```
+</Code>
