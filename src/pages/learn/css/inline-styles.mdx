@@ -46,9 +46,7 @@ let element: HTMLElement = <div style={{ color: use(state.color) }}>Hello, world
 ```
 </Code>
 
-This is the ideal solution for when styles change often, but is not optimal for more static css.
-
-If you want css values with more complex outputs you have to tie in a callback to compute the value when the state changes.
+If you want your css values to update with more complex outputs you can tie in a callback to compute the value when the state changes:
 
 <Code>
 ```js
@@ -75,3 +73,5 @@ let state: {
 let element: HTMLElement = <div style={{ top: use(state.line, (line) => `${line}em` }}>Hello, world!</div>;
 ```
 </Code>
+
+This is the ideal solution for when styles change often, but is not optimal for more static css.
