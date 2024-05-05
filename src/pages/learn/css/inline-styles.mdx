@@ -46,7 +46,7 @@ let element: HTMLElement = <div style={{ color: use(state.color) }}>Hello, world
 ```
 </Code>
 
-If you want your css values to update with more complex outputs you can tie in a callback to compute the value when the state changes:
+If you want your css values to have more complex values use reactive strings:
 
 <Code>
 ```js
@@ -54,14 +54,14 @@ let state = $state({
 	line: 0,
 });
 
-let element = html`<div style=${{ line: use(state.line, (line) => `${line}em` }}>Hello, world!</div>`;
+let element = html`<div style=${{ line: use`${state.line}em` }}>Hello, world!</div>`;
 ```
 ```jsx
 let state = $state({
 	line: 10,
 });
 
-let element = <div style={{ top: use(state.line, (line) => `${line}em`) }}>Hello, world!</div>;
+let element = <div style={{ top: use`${state.line}em` }}>Hello, world!</div>;
 ```
 ```tsx
 let state: {
@@ -70,7 +70,7 @@ let state: {
 	line: 10,
 });
 
-let element: HTMLElement = <div style={{ top: use(state.line, (line) => `${line}em` }}>Hello, world!</div>;
+let element: HTMLElement = <div style={{ top: use`${state.line}em` }}>Hello, world!</div>;
 ```
 </Code>
 
