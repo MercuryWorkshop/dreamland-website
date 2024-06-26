@@ -1,0 +1,26 @@
+---
+layout: layouts/Document.astro
+order: 3
+---
+import Code from "../../../components/Code.astro"
+
+## Conditional Classes
+
+Adding a property with the name `class:classname={...}` will show the classname only if the value is truthy.
+
+<Code>
+```js
+let state = $state({
+	active: true,
+});
+
+let element = html`<div class="container" class:active=${use(state.active)}>Hello, world!</div>`;
+```
+```jsx
+let state = $state({
+	active: true,
+});
+
+let element = <div class="container" class:active={use(state.active)}>Hello, world!</div>;
+```
+</Code>

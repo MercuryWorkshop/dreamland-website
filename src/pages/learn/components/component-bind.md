@@ -19,7 +19,7 @@ const InputField: Component<
 		hint: string;
 	}
 > = function () {
-	handle(use(this.text), () => {
+	useChange(this.text, () => {
 		this.hint = "";
 		if (this.text.length < 3) this.hint = "too short!";
 		if (this.text.length > 12) this.hint = "too long!";

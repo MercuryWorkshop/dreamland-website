@@ -63,6 +63,9 @@ const App: Component<
     {
         // types for internal state
         counter: number
+    },
+    {
+        // types you want to be accessible from outside, but not required properties (we'll get to this later)
     }
 > = function () {
     this.counter = 0
