@@ -3,10 +3,10 @@ title: Dreamland
 head:
   - tag: title
     content: dreamland.js
-description: A utilitarian framework for creating simple UI with JavaScript.
+description: A utilitarian framework for creating simple, reactive UI with JavaScript.
 template: splash
 hero:
-  tagline: A utilitarian framework for creating simple UI with JavaScript.
+  tagline: A utilitarian framework for creating simple, reactive UI with JavaScript.
   image:
     file: ../../assets/logo.png
   actions:
@@ -18,18 +18,15 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<CardGrid>
+<CardGrid stagger>
 	<Card title="Zero overhead" icon="seti:pipeline">
-		Dreamland has no virtual DOM and an optional build step. You can write your code in pure JavaScript without installing any dependencies.
+		Dreamland has no virtual DOM and an optional build step. You can choose to write your code in pure JavaScript without installing any dependencies.
 	</Card>
 	<Card title="Extremely versitile" icon="rocket">
-		Use Dreamland to power highly reactive applications, or to design complex UI. Or both.
+		Use Dreamland to power highly reactive applications, or to design complex UI - or both.
 	</Card>
 	<Card title="Small footprint" icon="open-book">
 		Coming in at just 1.6kb (with gzip and minification), it's one of the smallest UI frameworks available, even beating Preact.
-	</Card>
-	<Card title="UI should be simple" icon="laptop">
-		
 	</Card>
 </CardGrid>
 
