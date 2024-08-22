@@ -1,0 +1,93 @@
+---
+title: "Reactivity"
+sidebar:
+  order: 3
+---
+
+Reactivity allows you to create Dreamland components to reactively change depending on the state.
+
+At the most basic level, by assigning a value to a property on `this`, you create a stateful property that can be changed and watched with the `use()` function.
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.counter = 0;
+  return html`
+    <div>
+      <button on:click=${() => this.counter++}>
+        Current count is ${use(this.counter)}
+      </button>
+    </div>
+  `;
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.counter = 0;
+  return (
+    <div>
+      <button on:click={() => this.counter++}>
+        Current count is {use(this.counter)}
+      </button>
+    </div>
+  );
+}
+```
+  </TabItem>
+</Tabs>
+
+In this example, we:
+
+1. Create a stateful property on `this.counter`, initialized at 0
+
+2. Added an `on:click` event attribute to increase `this.counter` on every click
+
+3. Add the `use()` function inside the button element to display the current count
+
+## Computed values
+
+If we need to perform logic on a stateful property, we can add a callback inside the `use()` function. It passes in one argument which is the current value of the stateful property we're watching. We then return the value that we want the `use()` function to output.
+
+import { Aside } from '@astrojs/starlight/components'
+
+<Aside>
+  This callback won't save this change to the original stateful value, it's only used to be shown in the UI.
+</Aside>
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.counter = 0;
+  return html`
+    <div>
+      <button on:click=${() => this.counter++}>
+        The count is ${use(this.counter, (count) => (count % 2 == 0 ? "even" : "odd"))}
+      </button>
+    </div>
+  `;
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.counter = 0;
+  return (
+    <div>
+      <button on:click={() => this.counter++}>
+        The count is {use(this.counter, (count) => (count % 2 == 0 ? "even" : "odd"))}
+      </button>
+    </div>
+  );
+}
+```
+  </TabItem>
+</Tabs>

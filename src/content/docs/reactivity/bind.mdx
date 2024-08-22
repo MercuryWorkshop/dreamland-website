@@ -1,0 +1,83 @@
+---
+title: "Binding"
+---
+
+A common pattern in UI composition is to bind state to an `<input>` element. We can do this with the `bind:value` and `bind:checked` attributes for text inputs and checkboxes respectively.
+
+## bind:value
+
+This attribute takes a stateful property and binds it to the `<input>`. This goes two ways:
+
+1. When setting the state through JavaScript logic, the input's value will update to reflect the new state
+
+2. When editing the value inside the input, the state will change to reflect the new text.
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.text = "Hello world!";
+  return html`
+    <div>
+      <input bind:value=${use(this.text)} />
+      <p>Current input value: ${use(this.text)}</p>
+    </div>
+  `;
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.text = "Hello world!";
+  return (
+    <div>
+      <input bind:value={use(this.text)} />
+      <p>Current input value: {use(this.text)}</p>
+    </div>
+  );
+}
+```
+  </TabItem>
+</Tabs>
+
+When you edit the text inside the input, the text inside the `<p>` will change to reflect it.
+
+import { Aside } from '@astrojs/starlight/components'
+
+<Aside>`bind:value` also works with `<textarea>` elements.</Aside>
+
+## bind:checked
+
+This attribute works the same way as above, except specifically for input checkboxes.
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.checked = false;
+  return html`
+    <div>
+      <input type="checkbox" bind:checked=${use(this.checked)} />
+    </div>
+  `;
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.checked = false;
+  return (
+    <div>
+      <input type="checkbox" bind:checked={use(this.checked)} />
+    </div>
+  );
+}
+```
+  </TabItem>
+</Tabs>

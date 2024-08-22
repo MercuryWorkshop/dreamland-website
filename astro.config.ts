@@ -16,7 +16,19 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Getting Started',
-          link: "/getting-started"
+          link: '/getting-started'
+        },
+        {
+          label: 'Introduction',
+          autogenerate: {
+            directory: 'intro'
+          }
+        },
+        {
+          label: 'Advanced Reactivity',
+          autogenerate: {
+            directory: 'reactivity'
+          }
         }
       ]
     })

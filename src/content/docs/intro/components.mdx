@@ -1,0 +1,33 @@
+---
+title: "Components"
+sidebar:
+  order: 2
+---
+
+Dreamland components are templates for elements, defined inside functions, similar to React and Solid. JavaScript can ran inside the function to build your UI. 
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  return html`<p>Hello world!</p>`
+}
+
+document.body.appendChild(h(App))
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  return <p>Hello world!</p>
+}
+
+document.body.appendChild(App)
+```
+  </TabItem>
+</Tabs>
+
+They get turned into normal DOM elements to then be appended to the body.

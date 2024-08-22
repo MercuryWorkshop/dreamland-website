@@ -3,7 +3,9 @@ title: Getting Started
 description: A simple guide to jumping right into Dreamland
 ---
 
-### Without a build tool
+There are a few ways to use Dreamland. You can use it in a plain HTML document, or you can use a build tool like Vite.
+
+## Without a build tool
 
 If you want to use Dreamland right in your HTML with no build step, you can import the Dreamland library in your `<head>`:
 
@@ -31,7 +33,7 @@ window.addEventListener('load', () => {
 
 All the functions required to create your Dreamland app will be available globally.
 
-### Creating a custom Dreamland build
+## Creating a custom build
 
 If you want to further control or minimize the bundle size, you might want to consider building Dreamland from source and only enabling the features you want.
 
@@ -42,7 +44,7 @@ npm install
 npm rollup -c --file path/to/output.js --enable-jsxLiterals --disable-css
 ```
 
-### Using a bundler or build tool
+## Using a bundler or build tool
 
 If you want to use JSX (or other NPM modules), you'll want to use a bundler or build tool like Vite, esbuild, rspack, or others.
 
@@ -69,7 +71,7 @@ import { Steps } from '@astrojs/starlight/components';
       "jsx":"react",
       "jsxFactory":"h",
       "jsxFragmentFactory":"Fragment",
-      "types": ["dreamland"],
+      "types": ["dreamland"]
     }
     ```
 </Steps>

@@ -1,0 +1,57 @@
+---
+title: "Elements"
+sidebar:
+  order: 1
+---
+
+With Dreamland, everything is plain ol' HTML elements. We don't abstract away from the DOM; we only make it easier to use.
+
+Let's start with creating a basic element:
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+const button = html`<button class="btn">I am a button!</button>`
+document.body.appendChild(button)
+```
+  </TabItem>
+  <TabItem label="JSX" icon="seti:react">
+```js
+const button = <button class="btn">I am a button!</button>
+document.body.appendChild(button)
+```
+  </TabItem>
+</Tabs>
+
+Here, we created a button with a class and appended it to the body. Pretty simple - it shows off how basic Dreamland can be, making it easier to migrate from existing plain JavaScript codebases.
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside>
+  As you saw, Dreamland uses the HTMl standard `class` attribute for CSS classes instead of React's `className`.
+</Aside>
+
+## Events
+Events can be handled by adding an attribute to the element by appending `on:` to the event name (`on:click`, `on:input`, etc), and passing in a function.
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+const button = html`
+  <button on:click=${() => alert("The button was clicked!")}>
+		Click me!
+	</button>
+`
+```
+  </TabItem>
+  <TabItem label="JSX" icon="seti:react">
+```js
+const button = 
+  <button on:click={() => alert("The button was clicked!")}>
+		Click me!
+	</button>
+```
+  </TabItem>
+</Tabs>
