@@ -1,0 +1,52 @@
+---
+title: "Conditional Rendering"
+---
+
+Sometimes, you may want to reactively display different UI elements depending on the value of data.
+
+For this, we can use the `$if()` function. For arguments, it takes a reactive property along with one or two Dreamland elements (either `html` tag functions or JSX elements).
+
+If the reactive value is true, the first element will be shown. If it's false, the second element will be shown. If it's false _and_ there is no second element, no UI will be shown for that `$if()` block.
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.checked = false;
+
+  return html`
+    <div>
+      <input bind:checked=${use(this.checked)} />
+
+      ${$if(
+        use(this.checked), 
+        html`<p>this.checked is true</p>`,
+        html`<p>this.checked is false</p>`
+      )}
+    </div>
+  `;
+}
+```
+  </TabItem>
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.checked = false;
+
+  return (
+    <div>
+      <input bind:checked={use(this.checked)} />
+
+      {$if(
+        use(this.checked), 
+        <p>this.checked is true</p>,
+        <p>this.checked is false</p>
+      )}
+    </div>
+  )
+}
+```
+  </TabItem>
+</Tabs>
