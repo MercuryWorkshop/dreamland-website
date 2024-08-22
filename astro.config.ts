@@ -25,7 +25,7 @@ export default defineConfig({
           }
         },
         {
-          label: 'Advanced Reactivity',
+          label: 'Reactivity',
           autogenerate: {
             directory: 'reactivity'
           }
