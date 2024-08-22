@@ -1,0 +1,26 @@
+---
+title: "Reactive Strings"
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+<Aside>
+  If you use a custom build of Dreamland, the `usestring` flag must be enabled to use this feature.
+</Aside>
+
+You can run `use()` as a tag function to insert stateful properties into strings. This is useful when displaying stateful values alongside other text inside your UI.
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+html`<input placeholder=${use`Hello, ${this.name}!`} />`
+```
+  </TabItem>
+  <TabItem label="JSX" icon="seti:react">
+```js
+<input placeholder={use`Hello, ${this.name}!`} />
+```
+  </TabItem>
+</Tabs>
