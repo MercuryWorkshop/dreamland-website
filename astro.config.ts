@@ -6,6 +6,15 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Dreamland.js',
+      head: [
+        {
+          tag: 'link',
+          attrs: {
+            rel: 'icon',
+            href: "/logo.png"
+          }
+        }
+      ],
       logo: {
         src: './src/assets/logo.png'
       },
