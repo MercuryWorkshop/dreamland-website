@@ -1,0 +1,83 @@
+---
+title: Getting Started
+description: A simple guide to jumping right into Dreamland
+---
+
+### Without a build tool
+
+If you want to use Dreamland right in your HTML with no build step, you can import the Dreamland library in your `<head>`:
+
+```html
+<script src="https://unpkg.com/dreamland"></script>
+```
+
+An example Dreamland app looks like this:
+
+```js
+function App() {
+  this.counter = 0
+  return html`
+    <div>
+      <button on:click=${() => this.counter++}>Click me!</button>
+      <p>${use(this.counter)}</p>
+    </div>
+  `
+}
+
+window.addEventListener('load', () => {
+  document.body.appendChild(h(App))
+})
+```
+
+All the functions required to create your Dreamland app will be available globally.
+
+### Creating a custom Dreamland build
+
+If you want to further control or minimize the bundle size, you might want to consider building Dreamland from source and only enabling the features you want.
+
+```bash
+git clone https://github.com/MercuryWorkshop/dreamland
+cd dreamland
+npm install
+npm rollup -c --file path/to/output.js --enable-jsxLiterals --disable-css
+```
+
+### Using a bundler or build tool
+
+If you want to use JSX (or other NPM modules), you'll want to use a bundler or build tool like Vite, esbuild, rspack, or others.
+
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+1. Install Dreamland with npm:
+
+   ```bash
+    npm install dreamland
+    ```
+
+2. Configure your build tool:
+    
+    You can find guides for <a href="https://vitejs.dev/guide/">Vite</a>, <a href="https://esbuild.github.io/getting-started/">esbuild</a>, and <a href="https://rspack.dev/guide/start/quick-start">rspack</a>.
+
+    If using Vite, adding the <a href="https://www.npmjs.com/package/vite-plugin-dreamland">vite-plugin-dreamland</a> plugin to your Vite config will provide you with a better experience.
+
+3. Modify your `tsconfig.json` to configure your editor and build tool to use Dreamland's JSX globals:
+
+   ```json
+    {
+      // ...
+      "jsx":"react",
+      "jsxFactory":"h",
+      "jsxFragmentFactory":"Fragment",
+      "types": ["dreamland"],
+    }
+    ```
+</Steps>
+
+To initialize Dreamland, add this line to the top of your entrypoint file:
+
+```ts
+import "dreamland"
+```
+
+This will make all Dreamland functions available to you. If using TypeScript, all type definitions will be included as well.
