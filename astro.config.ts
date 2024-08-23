@@ -38,6 +38,12 @@ export default defineConfig({
           autogenerate: {
             directory: 'reactivity'
           }
+        },
+        {
+          label: "Styling",
+          autogenerate: {
+            directory: "styling"
+          }
         }
       ]
     })

@@ -1,0 +1,45 @@
+---
+title: "Conditional classes"
+sidebar:
+  order: 2
+---
+
+You can configure classes to be conditionally shown with state and the `class:active` attribute. Pass a `use()` function with a stateful property to the `class:active` attribute on an element and any classes in the `class` attribute will only be applied when the state is a <a href="">truthy</a> value.
+
+import { Tabs, TabItem } from "@astrojs/starlight/components"
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+const state = $state({
+  showClasses: true
+})
+
+const element = html`
+  <div
+    class="alert"
+    class:active=${use(state.showClasses)}
+  >
+    Hello world!
+  </div>
+`
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+const state = $state({
+  showClasses: true
+})
+
+const element = (
+  <div
+    class="alert"
+    class:active={use(state.showClasses)}
+  >
+    Hello world!
+  </div>
+)
+```
+  </TabItem>
+</Tabs>

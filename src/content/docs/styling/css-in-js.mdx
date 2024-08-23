@@ -1,0 +1,147 @@
+---
+title: "CSS-in-JS"
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components'
+
+<Aside>
+  If you use a custom build of Dreamland, the `css` flag must be enabled to use this feature.
+</Aside>
+
+Dreamland comes with an (optional) CSS-in-JS solution to more easily define CSS styles in your components. 
+
+By using the `css` tag function, you can define styles in CSS. Those styles will be put into a class, which you can put on your elements as a standard class name.
+
+Styles that are in the top level will be applied directly to the element you put the class name in. Any other scoped styles will be in the context of that element.
+
+import { Tabs, TabItem } from "@astrojs/starlight/components"
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+const styles = css`
+  color: green;
+	background-color: yellow;
+
+	.button {
+		color: red;
+		background-color: blue;
+	}
+`
+
+const element = html`
+  <div class=${styles}>
+    Hello world!
+    <button>I am a button</button>
+  </div>
+`
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+const styles = css`
+  color: green;
+	background-color: yellow;
+
+	.button {
+		color: red;
+		background-color: blue;
+	}
+`
+
+const element = (
+  <div class={styles}>
+    Hello world!
+    <button>I am a button</button>
+  </div>
+)
+```
+  </TabItem>
+</Tabs>
+
+## Component-scoped styles
+
+You can define CSS for the entire component by assigning CSS values (like you would with the `css` function) to the `this.css` property. This will apply those styles to component's DOM node itself.
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.css = `
+    color: green;
+    background-color: yellow;
+
+    .button {
+      color: red;
+      background-color: blue;
+    }
+  `
+
+  return html`
+    <div>
+      Hello world!
+      <button>I am a button</button>
+    </div>
+  `
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.css = `
+    color: green;
+    background-color: yellow;
+
+    .button {
+      color: red;
+      background-color: blue;
+    }
+  `
+
+  return (
+    <div>
+      Hello world!
+      <button>I am a button</button>
+    </div>
+  )
+}
+```
+  </TabItem>
+</Tabs>
+
+If you have a [child component](/intro/components/#components-as-children) that is defined inside a component that utilizes `this.css`, those styles **won't** be applied to the child component.
+
+<Aside type="caution" title="Limitation">
+  Due to how Dreamland parses CSS, please write your CSS with proper newlines.
+
+  ```js
+  // ❌
+  const styles = css`
+    background-color: green;
+
+    a { color: green; }
+
+    button { margin: 0; }
+
+  `
+
+  // ✅
+  const styles = css`
+    background-color: green;
+
+    a {
+      color: green;
+    }
+
+    button {
+      margin: 0;
+    }
+
+  `
+  ```
+</Aside>
