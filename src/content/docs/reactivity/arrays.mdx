@@ -1,0 +1,102 @@
+---
+title: "Arrays"
+---
+
+You can create a stateful array like you would any stateful value:
+
+```js
+this.fruits = ["apple", "banana", "grape"]
+```
+
+Arrays can be inserted into a component and Dreamland will render them in succession as children of that component:
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.fruits = [
+    html`<li>Apple</li>`, 
+    html`<li>Banana</li>`, 
+    html`<li>Grape</li>`
+  ]
+
+  return html`
+    <ul>
+      ${use(this.fruits)}
+    </ul>
+  `
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.fruits = [
+    <li>Apple</li>, 
+    <li>Banana</li>, 
+    <li>Grape</li>
+  ]
+
+  return (
+    <ul>
+      {use(this.fruits)}
+    </ul>
+  )
+}
+```
+  </TabItem>
+</Tabs>
+
+## Mutating
+To add an item to an array, using `Array.push` won't update components that `use()` the array. You can either push a value then re-assign the array to itself, or use the ES6 spread syntax to push that way.
+
+```js
+this.fruits = ["apple", "banana", "grape"]
+
+// Using .push
+this.fruits.push("orange")
+this.fruits = this.fruits
+
+// Using spreading
+this.fruits = [...this.fruits, "orange"]
+```
+
+## Mapping
+A common practice is to have an array of data then construct elements that utilize an index in the array. For this, you can get the value with `use()` then use .map where each value returns an element:
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function App() {
+  this.fruits = ["apple", "banana", "grape"]
+
+  return html`
+    <ul>
+      ${use(this.fruits, (fruits) => {
+        fruits.map(fruit => html`<li>${fruit}</li>`)
+      })}
+    </ul>
+  `
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function App() {
+  this.fruits = ["apple", "banana", "grape"]
+
+  return (
+    <ul>
+      {use(this.fruits, (fruits) => {
+        fruits.map(fruit => <li>{fruit}</li>)
+      })}
+    </ul>
+  )
+}
+```
+  </TabItem>
+</Tabs>
