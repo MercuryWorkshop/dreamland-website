@@ -1,0 +1,106 @@
+---
+title: "TypeScript"
+---
+
+By default, when using TypeScript, you'll probably encounter some errors especially when it comes to defining state and props.
+
+Dreamland provides a useful type for defining state in components: the `Component` interface.
+
+Since you can't add a type to a function directly, you'll have to assign the function to a variable and add a type to the variable:
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs syncKey="language">
+  <TabItem label="TypeScript" icon="seti:typescript">
+```js
+const App: Component = () => {
+  return html`<p>Hello world!</p>`
+}
+
+document.body.appendChild(h(App))
+```
+  </TabItem>
+
+  <TabItem label="TSX" icon="seti:react">
+```js
+const App: Component = () => {
+  return <p>Hello world!</p>
+}
+
+document.body.appendChild(App)
+```
+  </TabItem>
+</Tabs>
+
+## Props
+Props can be defined in an object as the first type generic of the interface.
+
+<Tabs syncKey="language">
+  <TabItem label="TypeScript" icon="seti:typescript">
+```js
+const Hello: Component<{ name: string }> = () => {
+  return html`<p>Hello, ${this.name}!</p>`
+}
+
+function App() {
+  return html`<${Hello} name="John"></${Hello}>`
+}
+```
+  </TabItem>
+
+  <TabItem label="TSX" icon="seti:react">
+```js
+const Hello: Component<{ name: string }> = () => {
+  return <p>Hello, {this.name}!</p>
+}
+
+function App() {
+  return <Hello name="John" />
+}
+```
+  </TabItem>
+</Tabs>
+
+## State
+State can be defined in the same way as props, but in an object as the second type generic.
+
+<Tabs syncKey="language">
+  <TabItem label="TypeScript" icon="seti:typescript">
+```js
+const App: Component<{}, { count: number }> = () => {
+  this.count = 0
+  return html`
+    <button on:click=${() => this.count++}>
+      ${use(this.count)}
+    </button>
+  `
+}
+```
+  </TabItem>
+
+  <TabItem label="TSX" icon="seti:react">
+```js
+const App: Component<{}, { count: number }> = () => {
+  this.count = 0
+  return (
+    <button on:click={() => this.count++}>
+      {use(this.count)}
+    </button>
+  )
+}
+```
+  </TabItem>
+</Tabs>
+
+## tsconfig.json
+Add these lines to your `tsconfig.json` to configure your build tool and editor.
+
+```json
+{
+  // ...
+  "jsx":"react",
+  "jsxFactory":"h",
+  "jsxFragmentFactory":"Fragment",
+  "types": ["dreamland"]
+}
+```

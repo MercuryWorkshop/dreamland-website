@@ -28,9 +28,9 @@ export default defineConfig({
           link: '/getting-started'
         },
         {
-          label: 'Introduction',
+          label: 'Guides',
           autogenerate: {
-            directory: 'intro'
+            directory: 'guides'
           }
         },
         {

@@ -34,12 +34,43 @@ They get turned into normal DOM elements to then be appended to the body.
 
 If you're using plain JavaScript, `h()` is required to convert the component into a DOM element first. You don't need this if using JSX + build tool.
 
+## Props
+Props are a way to pass data into your components and make them more re-usable. You can pass them in through to the component as if they were normal HTML attributes, and you can read them by accessing them as a property on `this`.
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function Hello() {
+  return html`<p>Hello, ${this.name}!</p>`
+}
+
+function App() {
+  return html`<${Hello} name="John"></${Hello}>`
+}
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function Hello() {
+  return <p>Hello, {this.name}!</p>
+}
+
+function App() {
+  return <Hello name="John" />
+}
+```
+  </TabItem>
+</Tabs>
+
 ## Components as children
 To use components as children of other components, you can call them right in your UI. 
 
 If using JavaScript, you can insert them inside the `html` tag function.
 
 If using JSX, use it as you would any element, similar to other JSX-powered frameworks.
+
+import { Aside } from '@astrojs/starlight/components'
 
 <Tabs syncKey="language">
   <TabItem label="JavaScript" icon="seti:javascript">
@@ -51,12 +82,24 @@ function HelloWorld() {
 function App() {
   return html`
     <h1>My App</h1>
-    <${HelloWorld} />
+    <${HelloWorld}></${HelloWorld}>
   `
 }
 
 document.body.appendChild(h(App))
 ```
+
+  <Aside>
+    When using components as children in plain JavaScript, as shown above, writing them as a self-closing tag is not supported due to how Dreamland handles them. JSX is not affected by this.
+
+```js
+// ❌
+html`<${Component} />`
+
+// ✅
+html`<${Component}></${Component}>`
+```
+  </Aside>
   </TabItem>
 
   <TabItem label="JSX" icon="seti:react">
