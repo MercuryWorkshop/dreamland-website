@@ -31,3 +31,48 @@ document.body.appendChild(App)
 </Tabs>
 
 They get turned into normal DOM elements to then be appended to the body.
+
+If you're using plain JavaScript, `h()` is required to convert the component into a DOM element first. You don't need this if using JSX + build tool.
+
+## Using components
+To use components inside other components, you can call them right in your UI. 
+
+If using JavaScript, you can insert them inside the `html` tag function.
+
+If using JSX, use it as you would any element, similar to other JSX-powered frameworks.
+
+<Tabs syncKey="language">
+  <TabItem label="JavaScript" icon="seti:javascript">
+```js
+function HelloWorld() {
+  return html`<p>Hello world!</p>`
+}
+
+function App() {
+  return html`
+    <h1>My App</h1>
+    <${HelloWorld} />
+  `
+}
+
+document.body.appendChild(h(App))
+```
+  </TabItem>
+
+  <TabItem label="JSX" icon="seti:react">
+```js
+function HelloWorld() {
+  return <p>Hello world!</p>
+}
+
+function App() {
+  return (
+    <h1>My App</h1>
+    <HelloWorld />
+  )
+}
+
+document.body.appendChild(App)
+```
+  </TabItem>
+</Tabs>
