@@ -3,6 +3,8 @@ layout: layouts/Document.astro
 order: 2
 ---
 
+import Code from "../../../components/Code.astro"
+
 # Arrays
 
 You can pass an array of HTML elements (or strings) inside an element and it will render them correctly
@@ -35,7 +37,75 @@ this.items = [...this.items, <div>another item</div>];
 ```
 
 Using `this.items` to store the html elements from `ToDoItem`, we can easily create a todo app with dynamic add/remove elements.
+<Code>
+```js
+function ToDoItem() {
+	return html`
+		<div>
+			// we don't need to use `use` here because `title` doesn't change over the lifetime of this component. If
+			title is needed to react to changes, `use` can be added
+			${this.title}
+			<button on:click=${() => this.remove()}>Remove Item</button>
+		</div>
+	`
+};
 
+function ToDoList() {
+	this.items = [];
+
+	return html`
+		<div>
+			<input bind:value=${use(this.text)} />
+			<button
+				on:click=${() => {
+					let newitem = html`
+						<${ToDoItem}
+							title=${this.text}
+							remove=${() => (this.items = this.items.filter((i) => i !== newitem))}>
+						</${ToDoItem}>
+					`
+					this.items = [...this.items, newitem];
+				}}
+			/>
+			<div>${use(this.items)}</div>
+		</div>
+	`
+};
+```
+```jsx
+function ToDoItem() {
+	return (
+		<div>
+			// we don't need to use `use` here because `title` doesn't change over the lifetime of this component. If
+			title is needed to react to changes, `use` can be added
+			{this.title}
+			<button on:click={() => this.remove()}>Remove Item</button>
+		</div>
+	);
+};
+
+function ToDoList() {
+	this.items = [];
+
+	return (
+		<div>
+			<input bind:value={use(this.text)} />
+			<button
+				on:click={() => {
+					let newitem = (
+						<ToDoItem
+							title={this.text}
+							remove={() => (this.items = this.items.filter((i) => i !== newitem))}
+						/>
+					);
+					this.items = [...this.items, newitem];
+				}}
+			/>
+			<div>{use(this.items)}</div>
+		</div>
+	);
+};
+```
 ```tsx
 const ToDoItem: Component<
 	{
@@ -84,6 +154,7 @@ const ToDoList: Component<
 	);
 };
 ```
+</Code>
 
 Notice how `this.items = [...this.items, newitem]` added the new todo element and `this.items = this.items.filter(...)` removed the specific element when the button was pressed
 

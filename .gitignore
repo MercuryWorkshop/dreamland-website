@@ -22,7 +22,6 @@ pnpm-debug.log*
 
 # aint nobody care about lockfiles
 package-lock.json
-pnpm-lock.yaml
 # please do not use yarn
 yarn.lock
 bun.lockb

@@ -13,8 +13,8 @@ Components are little smaller pieces of HTML and js that you can use elsewhere i
 function ButtonComponent(){
   return html`
     <div>
-        {this.title}
-        <button>{this.children}</button>
+        ${this.title}
+        <button>${this.children}</button>
     </div>
   `
 }
